@@ -2,12 +2,12 @@ public class RomanNumber {
 
     public static final int MIN = 1;
     public static final int MAX = 4_000 - 1;
-    private final int decimalNumber;
     private final String value;
+    private final int decimalNumber;
 
     public RomanNumber(int decimalNumber) {
         validateRange(decimalNumber);
-        this.value = toRomanNumber(decimalNumber);
+        value = toRomanNumber(decimalNumber);
         this.decimalNumber = decimalNumber;
     }
 
@@ -23,20 +23,20 @@ public class RomanNumber {
     }
 
     public RomanNumber plus(RomanNumber romanNumber) {
-        return new RomanNumber(this.decimalNumber + romanNumber.getDecimalNumber());
+        return new RomanNumber(decimalNumber + romanNumber.getDecimalNumber());
     }
 
     public RomanNumber minus(RomanNumber romanNumber) {
-        return new RomanNumber(this.decimalNumber - romanNumber.getDecimalNumber());
+        return new RomanNumber(decimalNumber - romanNumber.getDecimalNumber());
     }
 
     public RomanNumber multiply(RomanNumber romanNumber) {
-        return new RomanNumber(this.decimalNumber * romanNumber.getDecimalNumber());
+        return new RomanNumber(decimalNumber * romanNumber.getDecimalNumber());
     }
 
     public RomanNumber divide(RomanNumber romanNumber) {
         // 로마 숫자는 0이 없으므로 division by zero exception 발생 X
-        return new RomanNumber(this.decimalNumber / romanNumber.getDecimalNumber());
+        return new RomanNumber(decimalNumber / romanNumber.getDecimalNumber());
     }
 
     private void validateRange(int decimalNumber) {
@@ -46,10 +46,10 @@ public class RomanNumber {
     }
 
     public String getValue() {
-        return this.value;
+        return value;
     }
 
     public int getDecimalNumber() {
-        return this.decimalNumber;
+        return decimalNumber;
     }
 }

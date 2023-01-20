@@ -4,7 +4,7 @@ public enum RomanNumberEnum {
     X(10), IX(9), V(5), IV(4),
     I(1);
 
-    private int decimalNumber;
+    private final int decimalNumber;
 
     RomanNumberEnum(int decimalNumber) {
         this.decimalNumber = decimalNumber;
