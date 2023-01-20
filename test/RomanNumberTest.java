@@ -55,11 +55,35 @@ public class RomanNumberTest {
         RomanNumber romanNumber10 = new RomanNumber(10);
         RomanNumber romanNumber25 = new RomanNumber(25);
         RomanNumber romanNumber35 = romanNumber10.plus(romanNumber25);
-        testRomanNumber(romanNumber35.value(), 35);
+        testRomanNumber(romanNumber35.getValue(), 35);
+    }
+
+    @Test
+    public void 로마_숫자_뺄셈_테스트() {
+        RomanNumber romanNumber10 = new RomanNumber(10);
+        RomanNumber romanNumber25 = new RomanNumber(25);
+        RomanNumber romanNumber15 = romanNumber25.minus(romanNumber10);
+        testRomanNumber(romanNumber15.getValue(), 15);
+    }
+
+    @Test
+    public void 로마_숫자_곱셈_테스트() {
+        RomanNumber romanNumber10 = new RomanNumber(10);
+        RomanNumber romanNumber25 = new RomanNumber(25);
+        RomanNumber romanNumber250 = romanNumber10.multiply(romanNumber25);
+        testRomanNumber(romanNumber250.getValue(), 250);
+    }
+
+    @Test
+    public void 로마_숫자_나눗셈_테스트() {
+        RomanNumber romanNumber2 = new RomanNumber(2);
+        RomanNumber romanNumber10 = new RomanNumber(10);
+        RomanNumber romanNumber5 = romanNumber10.divide(romanNumber2);
+        testRomanNumber(romanNumber5.getValue(), 5);
     }
 
     public void testRomanNumber(String expected, Integer decimalNumber) {
         RomanNumber romanNumber = new RomanNumber(decimalNumber);
-        assertEquals(expected, romanNumber.value());
+        assertEquals(expected, romanNumber.getValue());
     }
 }
