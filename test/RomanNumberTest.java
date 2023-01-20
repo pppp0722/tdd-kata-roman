@@ -1,84 +1,65 @@
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import org.junit.Test;
+
 public class RomanNumberTest {
 
-    public void testRomanNumberValue(String romanNumber, Integer decimalNumber) {
-        RomanNumber test = new RomanNumber(decimalNumber);
-        assertEquals(romanNumber, test.value());
-    }
     @Test
-    public void romanNumberValueShouldGetRomanNumberLessThan10() {
-        RomanNumber one = new RomanNumber(1);
-        assertEquals("I", one.value());
-
-        RomanNumber two = new RomanNumber(2);
-        assertEquals("II", two.value());
-
-        RomanNumber three = new RomanNumber(3);
-        assertEquals("III", three.value());
-
-        RomanNumber four = new RomanNumber(4);
-        assertEquals("IV", four.value());
-
-        RomanNumber five = new RomanNumber(5);
-        assertEquals("V", five.value());
-
-        RomanNumber six = new RomanNumber(6);
-        assertEquals("VI", six.value());
-
-        RomanNumber seven = new RomanNumber(7);
-        assertEquals("VII", seven.value());
-
-        RomanNumber eight = new RomanNumber(8);
-        assertEquals("VIII", eight.value());
-
-        RomanNumber nine = new RomanNumber(9);
-        assertEquals("IX", nine.value());
-
-        RomanNumber ten = new RomanNumber(10);
-        assertEquals("X", ten.value());
+    public void 십보다_작은_숫자_로마_숫자_변환_테스트() {
+        testRomanNumber("I", 1);
+        testRomanNumber("II", 2);
+        testRomanNumber("III", 3);
+        testRomanNumber("IV", 4);
+        testRomanNumber("V", 5);
+        testRomanNumber("VI", 6);
+        testRomanNumber("VII", 7);
+        testRomanNumber("VIII", 8);
+        testRomanNumber("IX", 9);
     }
 
     @Test
-    public void romanNumberValueShouldGetRomanNumberLessThan50() {
-       RomanNumber twentyTwo = new RomanNumber(22);
-       assertEquals("XXII", twentyTwo.value());
-
-       RomanNumber forty = new RomanNumber(40);
-       assertEquals("XL", forty.value());
+    public void 오십보다_작은_숫자_로마_숫자_변환_테스트() {
+        testRomanNumber("X", 10);
+        testRomanNumber("XXII", 22);
+        testRomanNumber("XL", 40);
     }
 
     @Test
-    public void romanNumberValueShouldGetRomanNumberLessThan100() {
-        testRomanNumberValue("LXVII", 67);
-        testRomanNumberValue("XC", 90);
+    public void 백보다_작은_숫자_로마_숫자_변환_테스트() {
+        testRomanNumber("L", 50);
+        testRomanNumber("LXVII", 67);
+        testRomanNumber("XC", 90);
     }
 
     @Test
-    public void romanNumberValueShouldGetRomanNumberLessThan3000() {
-        testRomanNumberValue("LXVII", 67);
-        testRomanNumberValue("XC", 90);
+    public void 사천보다_작은_숫자_로마_숫자_변환_테스트() {
+        testRomanNumber("LXVII", 67);
+        testRomanNumber("XC", 90);
     }
 
     @Test
-    public void romanNumberValueShouldGetRomanNumberLessThan1() {
-        testRomanNumberValue("LXVII", 67);
-        testRomanNumberValue("XC", 90);
+    public void 일보다_작은_숫자_로마_숫자_변환_예외_테스트() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RomanNumber(0));
     }
 
     @Test
-    public void romanNumberValueShouldGetRomanNumberMoreThan3000() {
-        assertThrows(IllegalArgumentException.class, ()-> testRomanNumberValue("ERROR", 4903));
+    public void 사천보다_크거나_같은_숫자_로마_숫자_변환_예외_테스트() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RomanNumber(4000));
     }
 
     @Test
-    public void romanNumberValueCanBeAdd() {
-        RomanNumber romanNumber1 = new RomanNumber(10);
-        RomanNumber romanNumber2 = new RomanNumber(25);
+    public void 로마_숫자_덧셈_테스트() {
+        RomanNumber romanNumber10 = new RomanNumber(10);
+        RomanNumber romanNumber25 = new RomanNumber(25);
+        RomanNumber romanNumber35 = romanNumber10.plus(romanNumber25);
+        testRomanNumber(romanNumber35.value(), 35);
+    }
 
-        assertEquals("XXXV", romanNumber1.plus(romanNumber2).value());
+    public void testRomanNumber(String expected, Integer decimalNumber) {
+        RomanNumber romanNumber = new RomanNumber(decimalNumber);
+        assertEquals(expected, romanNumber.value());
     }
 }
