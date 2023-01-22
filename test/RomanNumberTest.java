@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import romannumber.RomanNumber;
 import org.junit.Test;
 
 public class RomanNumberTest {

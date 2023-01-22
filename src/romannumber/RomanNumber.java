@@ -1,3 +1,5 @@
+package romannumber;
+
 public class RomanNumber {
 
     public static final int MIN = 1;
